@@ -12,16 +12,14 @@ import java.io.IOException;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Board extends JPanel implements ActionListener, KeyListener {
+public class Screen extends JPanel implements ActionListener, KeyListener {
 
     // controls the delay between each tick in ms
     private final int DELAY = 25;
     // controls the size of the board
     public static final int TILE_SIZE = 50;
     public static final int ROWS = 12;
-    public static final int COLUMNS = 18;
-    // controls how many coins appear on the board
-    public static final int NUM_COINS = 5;
+    public static final int COLUMNS = 12;
     // suppress serialization warning
     private static final long serialVersionUID = 490905409104883233L;
 
@@ -34,7 +32,7 @@ public class Board extends JPanel implements ActionListener, KeyListener {
     /* private Player player;
        private ArrayList coins; */
 
-    public Board() {
+    public Screen() {
         // set the game board size
         setPreferredSize(new Dimension(TILE_SIZE * COLUMNS, TILE_SIZE * ROWS));
         // set the game board background color
@@ -47,15 +45,34 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         } catch (IOException exc) {
             System.out.println("Error opening image file: " + exc.getMessage());
         }
-
-        
+        image = scale(image, 50, 50);
 
          // this timer will call the actionPerformed() method every DELAY ms
         timer = new Timer(DELAY, this);
         timer.start();
     }
 
-    
+    public BufferedImage scale(BufferedImage src, int w, int h)
+    {
+        BufferedImage img = 
+                new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        int x, y;
+        int ww = src.getWidth();
+        int hh = src.getHeight();
+        int[] ys = new int[h];
+        for (y = 0; y < h; y++)
+            ys[y] = y * hh / h;
+        for (x = 0; x < w; x++) {
+            int newX = x * ww / w;
+            for (y = 0; y < h; y++) {
+                int col = src.getRGB(newX, ys[y]);
+                img.setRGB(x, y, col);
+            }
+        }
+        return img;
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // this method is called by the timer every DELAY ms.
@@ -78,12 +95,14 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         // draw our graphics.
         drawBackground(g);
         
-        g.drawImage(
-            image, 
-            TILE_SIZE, 
-            TILE_SIZE, 
-            this
-        );
+        for (int i = 0; i < ROWS; i++)
+            for (int j = 0; j < COLUMNS-1; j++)
+                g.drawImage(
+                    image, 
+                    TILE_SIZE*j, 
+                    TILE_SIZE*i, 
+                    this
+                ); 
 
         // this smooths out animations on some systems
         Toolkit.getDefaultToolkit().sync();

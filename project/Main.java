@@ -10,11 +10,11 @@ class Main {
 
         // create the jpanel to draw on.
         // this also initializes the game loop
-        Board board = new Board();
+        Screen screen = new Screen();
         // add the jpanel to the window
-        window.add(board);
+        window.add(screen);
         // pass keyboard inputs to the jpanel
-        window.addKeyListener(board);
+        window.addKeyListener(screen);
         
         // don't allow the user to resize the window
         window.setResizable(false);
