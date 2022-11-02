@@ -18,8 +18,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     // suppress serialization warning
     private static final long serialVersionUID = 490905409104883233L;
 
-    private Entity entity;
-
+    SnakeHead snake_head;
     // keep a reference to the timer object that triggers actionPerformed() in
     // case we need access to it in another method
     private Timer timer;
@@ -33,7 +32,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         // set the game board background color
         setBackground(new Color(232, 232, 232));
 
-        entity = new Entity();
+        snake_head = new SnakeHead();
 
          // this timer will call the actionPerformed() method every DELAY ms
         timer = new Timer(DELAY, this);
@@ -62,7 +61,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         // draw our graphics.
         drawBackground(g);
 
-        entity.drawEntity(g, this);
+        snake_head.drawEntity(g, this);
 
         // this smooths out animations on some systems
         Toolkit.getDefaultToolkit().sync();
