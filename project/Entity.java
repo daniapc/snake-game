@@ -17,11 +17,12 @@ abstract class Entity {
     }
 
     public void drawEntity(Graphics g, ImageObserver observer){
-        
+        Coordinate coordinate = Screen.board[11][10];
+
         g.drawImage(
             image, 
-            50, 
-            50, 
+            coordinate.x, 
+            coordinate.y, 
             observer
         ); 
     }
@@ -48,4 +49,5 @@ abstract class Entity {
         }
         return img;
     }
+
 }

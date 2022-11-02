@@ -18,19 +18,25 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     // suppress serialization warning
     private static final long serialVersionUID = 490905409104883233L;
 
-    SnakeHead snake_head;
     // keep a reference to the timer object that triggers actionPerformed() in
     // case we need access to it in another method
     private Timer timer;
     // objects that appear on the game board
     /* private Player player;
        private ArrayList coins; */
+    
+    public SnakeHead snake_head;
+
+    public static Coordinate[][] board;
 
     public Screen() {
         // set the game board size
         setPreferredSize(new Dimension(TILE_SIZE * COLUMNS, TILE_SIZE * ROWS));
         // set the game board background color
         setBackground(new Color(232, 232, 232));
+
+        board = new Coordinate[ROWS][COLUMNS];
+        initBoard();
 
         snake_head = new SnakeHead();
 
@@ -98,6 +104,16 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
                 );
 
             }    
+        }
+    }
+
+    public static void initBoard(){
+        for (int i = 0; i < ROWS; i++){
+            for (int j = 0; j < COLUMNS; j++){
+                board[i][j] = new Coordinate();
+                board[i][j].y = i*TILE_SIZE;
+                board[i][j].x = j*TILE_SIZE; 
+            }
         }
     }
 }
