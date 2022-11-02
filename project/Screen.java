@@ -85,14 +85,13 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         // react to key down events
-        /* player.keyPressed(e); */
+        snake_head.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         // react to key up events
     }
-
     
     private void drawBackground(Graphics g) {
         // draw a checkered background
