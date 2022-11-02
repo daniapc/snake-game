@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.swing.*;
 
+// Screen class that inherits from a built-in class in Java
 public class Screen extends JPanel implements ActionListener, KeyListener {
 
     // controls the delay between each tick in ms

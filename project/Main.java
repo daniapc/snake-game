@@ -1,16 +1,24 @@
 import javax.swing.*;
 
+// Class that allows creating a window and a screen for it. 
+// Source: https://learncodebygaming.com/blog/how-to-make-a-video-game-in-java-2d-basics
 class Main {
+
+    private static Screen screen;
+
+    public Main(){
+
+    }
 
     private static void initWindow() {
         // create a window frame and set the title in the toolbar
         JFrame window = new JFrame("Snake Game");
         // when we close the window, stop the app
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         // create the jpanel to draw on.
         // this also initializes the game loop
-        Screen screen = new Screen();
+        screen = new Screen();
         // add the jpanel to the window
         window.add(screen);
         // pass keyboard inputs to the jpanel
