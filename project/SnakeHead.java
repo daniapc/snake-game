@@ -22,4 +22,14 @@ class SnakeHead extends SnakePart {
         image = scale(image, 50, 50);
     }
 
+    @Override
+    public void move(){
+        if (coordinate.x < Screen.COLUMNS-1 && coordinate.y < Screen.ROWS-1 && 
+            coordinate.x > 0 && coordinate.y > 0){
+            int move_x = coordinate.x + velocity.x;
+            int move_y = coordinate.y + velocity.y;
+            this.setPosition(move_x, move_y);  
+        }      
+    }
+
 }

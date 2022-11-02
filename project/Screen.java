@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Screen extends JPanel implements ActionListener, KeyListener {
 
     // controls the delay between each tick in ms
-    private final int DELAY = 25;
+    private final int DELAY = 500;
     // controls the size of the board
     public static final int TILE_SIZE = 50;
     public static final int ROWS = 12;
@@ -39,6 +39,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         initBoard();
 
         snake_head = new SnakeHead();
+        snake_head.setPosition(2, 10);
 
          // this timer will call the actionPerformed() method every DELAY ms
         timer = new Timer(DELAY, this);
@@ -50,6 +51,8 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         // this method is called by the timer every DELAY ms.
         // use this space to update the state of your game or animation
         // before the graphics are redrawn.
+
+        snake_head.move();
 
         // calling repaint() will trigger paintComponent() to run again,
         // which will refresh/redraw the graphics.

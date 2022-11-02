@@ -11,18 +11,25 @@ import java.awt.image.ImageObserver;
 abstract class Entity {
     
     protected BufferedImage image;
+    protected Coordinate position;
+    protected Coordinate coordinate;
 
     public Entity(){
+        this.position = new Coordinate();
+        this.coordinate = new Coordinate();
+    }
 
+    public void setPosition(int x, int y){
+        this.position = Screen.board[y][x];
+        this.coordinate.x = x;
+        this.coordinate.y = y;
     }
 
     public void drawEntity(Graphics g, ImageObserver observer){
-        Coordinate coordinate = Screen.board[11][10];
-
         g.drawImage(
             image, 
-            coordinate.x, 
-            coordinate.y, 
+            position.x, 
+            position.y, 
             observer
         ); 
     }
