@@ -1,16 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
-
-import java.io.IOException;
-import java.io.File;
-import javax.imageio.ImageIO;
 
 public class Screen extends JPanel implements ActionListener, KeyListener {
 
@@ -23,7 +17,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     // suppress serialization warning
     private static final long serialVersionUID = 490905409104883233L;
 
-    private BufferedImage image;
+    private Entity entity;
 
     // keep a reference to the timer object that triggers actionPerformed() in
     // case we need access to it in another method
@@ -38,40 +32,12 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         // set the game board background color
         setBackground(new Color(232, 232, 232));
 
-        try {
-            // you can use just the filename if the image file is in your
-            // project folder, otherwise you need to provide the file path.
-            image = ImageIO.read(new File("./images/snake.png"));
-        } catch (IOException exc) {
-            System.out.println("Error opening image file: " + exc.getMessage());
-        }
-        image = scale(image, 50, 50);
+        entity = new Entity();
 
          // this timer will call the actionPerformed() method every DELAY ms
         timer = new Timer(DELAY, this);
         timer.start();
     }
-
-    public BufferedImage scale(BufferedImage src, int w, int h)
-    {
-        BufferedImage img = 
-                new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        int x, y;
-        int ww = src.getWidth();
-        int hh = src.getHeight();
-        int[] ys = new int[h];
-        for (y = 0; y < h; y++)
-            ys[y] = y * hh / h;
-        for (x = 0; x < w; x++) {
-            int newX = x * ww / w;
-            for (y = 0; y < h; y++) {
-                int col = src.getRGB(newX, ys[y]);
-                img.setRGB(x, y, col);
-            }
-        }
-        return img;
-    }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -94,15 +60,8 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 
         // draw our graphics.
         drawBackground(g);
-        
-        for (int i = 0; i < ROWS; i++)
-            for (int j = 0; j < COLUMNS-1; j++)
-                g.drawImage(
-                    image, 
-                    TILE_SIZE*j, 
-                    TILE_SIZE*i, 
-                    this
-                ); 
+
+        entity.drawEntity(g, this);
 
         // this smooths out animations on some systems
         Toolkit.getDefaultToolkit().sync();

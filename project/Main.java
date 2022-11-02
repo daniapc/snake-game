@@ -7,7 +7,7 @@ class Main {
         JFrame window = new JFrame("Snake Game");
         // when we close the window, stop the app
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         // create the jpanel to draw on.
         // this also initializes the game loop
         Screen screen = new Screen();
