@@ -25,7 +25,7 @@ class Main {
         window.addKeyListener(screen);
         
         // don't allow the user to resize the window
-        window.setResizable(false);
+        window.setResizable(true);
         // fit the window size around the components (just our jpanel).
         // pack() should be called after setResizable() to avoid issues on some platforms
         window.pack();

@@ -24,8 +24,11 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     // objects that appear on the game board
     /* private Player player;
        private ArrayList coins; */
+
+    private int state;
     
-    public SnakeHead snake_head;
+    private Game game;
+    private Menu menu;
 
     public static Coordinate[][] board;
 
@@ -38,8 +41,10 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         board = new Coordinate[ROWS][COLUMNS];
         initBoard();
 
-        snake_head = new SnakeHead();
-        snake_head.setPosition(2, 10);
+        game = new Game();
+        game.initGame();
+
+        menu = new Menu();
 
          // this timer will call the actionPerformed() method every DELAY ms
         timer = new Timer(DELAY, this);
@@ -52,7 +57,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         // use this space to update the state of your game or animation
         // before the graphics are redrawn.
 
-        snake_head.move();
+        game.updateGame();
 
         // calling repaint() will trigger paintComponent() to run again,
         // which will refresh/redraw the graphics.
@@ -70,7 +75,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
         // draw our graphics.
         drawBackground(g);
 
-        snake_head.drawEntity(g, this);
+        game.drawGame(g, this);
 
         // this smooths out animations on some systems
         Toolkit.getDefaultToolkit().sync();
@@ -85,7 +90,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         // react to key down events
-        snake_head.keyPressed(e);
+        game.keyPressed(e);
     }
 
     @Override
