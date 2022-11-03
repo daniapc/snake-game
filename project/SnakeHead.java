@@ -10,8 +10,21 @@ import java.awt.event.KeyEvent;
 
 class SnakeHead extends SnakePart {
 
+    private Coordinate velocity;
+
     public SnakeHead (){
         super();
+
+        velocity = new Coordinate();
+        // Head Role
+        body_role = 1;
+
+        this.setVelocity(0, 0);
+    }
+
+    public void setVelocity(int x, int y){
+        velocity.x = x;
+        velocity.y = y;
     }
 
     @Override

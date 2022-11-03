@@ -10,7 +10,13 @@ import java.awt.event.KeyEvent;
 
 abstract class SnakePart extends Entity {
 
-    protected Coordinate velocity;
+    protected static int body_size;
+
+    protected int body_role;
+
+    protected SnakePart front;
+    protected SnakePart back;
+    protected static SnakePart tail;
 
     public SnakePart (){
         super();
@@ -24,17 +30,28 @@ abstract class SnakePart extends Entity {
         // resize de image
         image = scale(image, Screen.TILE_SIZE, Screen.TILE_SIZE);
 
-        velocity = new Coordinate();
+        body_role = 0;
+        front = null;
+        back = null;
 
-        this.setVelocity(0, 0);
     }
 
-    public void setVelocity(int x, int y){
-        velocity.x = x;
-        velocity.y = y;
-    }
-
+    // Virtual method
     public void move(){
 
+    }
+
+    // Pointer to front part
+    public void setFront(SnakePart f){
+        front = f;
+    }
+    // Pointer to back part
+    public void setBack(SnakePart b){
+        back = b;
+    }
+
+    // Pointer to static tail
+    public static void setTail(SnakePart t){
+        tail = t;
     }
 }

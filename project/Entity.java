@@ -14,6 +14,8 @@ abstract class Entity {
     protected Coordinate position;
     protected Coordinate coordinate;
 
+    protected int id;
+
     public Entity(){
         this.position = new Coordinate();
         this.coordinate = new Coordinate();
@@ -24,6 +26,10 @@ abstract class Entity {
         this.coordinate.x = x;
         this.coordinate.y = y;
     }
+
+    public Coordinate getCoordinate(){
+        return this.coordinate;
+    } 
 
     public void drawEntity(Graphics g, ImageObserver observer){
         g.drawImage(
