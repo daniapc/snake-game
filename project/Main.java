@@ -5,6 +5,7 @@ import javax.swing.*;
 class Main {
 
     private static Screen screen;
+    private static JFrame window;
 
     public Main(){
 
@@ -12,7 +13,7 @@ class Main {
 
     private static void initWindow() {
         // create a window frame and set the title in the toolbar
-        JFrame window = new JFrame("Snake Game");
+        window = new JFrame("Snake Game");
         // when we close the window, stop the app
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -45,5 +46,10 @@ class Main {
                 initWindow();
             }
         });
+    }
+
+    public static void close(){
+        window.dispose();
+        System.exit(0);
     }
 }

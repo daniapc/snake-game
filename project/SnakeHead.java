@@ -33,10 +33,17 @@ class SnakeHead extends SnakePart {
             coordinate.x > 0 && coordinate.y > 0){
             int move_x = coordinate.x + velocity.x;
             int move_y = coordinate.y + velocity.y;
+
+            if (snake_map[move_y][move_x] == 1)
+                Main.close();
+
             this.setPosition(move_x, move_y);
 
-            snake_map[move_y][move_x] = 2;
-        }      
+            snake_map[move_y][move_x] = 2;            
+        }
+        else {
+            Main.close();
+        }
     }
 
     public void keyPressed(KeyEvent e) {

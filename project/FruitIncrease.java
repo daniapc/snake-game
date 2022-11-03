@@ -21,6 +21,8 @@ class FruitIncrease extends Fruit {
     @Override
     public void eat(){
         SnakePart.snakeIncrease();
+
+        this.born();
     }
 
 }

@@ -12,6 +12,7 @@ abstract class Fruit extends Entity {
         this.born();
     }
 
+    
     public void initFruitMap(){
         fruit_map = new int[Screen.ROWS][Screen.COLUMNS];
         for (int i = 0; i < Screen.ROWS; i++)
@@ -23,6 +24,7 @@ abstract class Fruit extends Entity {
         
     }
 
+    // The fruit born randomly in the map
     public void born(){
         Random rand = new Random(); //instance of random class
         int upperbound = Screen.COLUMNS - 2;
@@ -36,19 +38,10 @@ abstract class Fruit extends Entity {
 
         fruit_map[born_coord.y][born_coord.x] = 1;
 
-        /* 
-        for (int i = 0; i < Screen.ROWS; i++){
-            for (int j = 0; j < Screen.COLUMNS; j++)
-                System.out.print(fruit_map[i][j] + " ");
-            System.out.print("\n");
-        }
-
-        System.out.print("\n\n");
-        */
-        
         this.setPosition(born_coord.x, born_coord.y);
     }
 
+    // Verifies in the snake map if the born coordinate is valid or not
     public boolean isNotValid(Coordinate bc){
         if (bc.x == -1)
             return true;

@@ -32,10 +32,11 @@ public class Game {
             cursor = cursor.getFront();
         }
         
-
-        if (snake_head.getCoordinate().x == fruit_increase.getCoordinate().x &&
-            snake_head.getCoordinate().y == fruit_increase.getCoordinate().y)
+        Coordinate head_coordinate = snake_head.getCoordinate();
+        if (Fruit.fruit_map[head_coordinate.y][head_coordinate.x] == 1){
             fruit_increase.eat();
+            Fruit.fruit_map[head_coordinate.y][head_coordinate.x] = 0;
+        }
     }
 
     public void drawGame(Graphics g, Screen s){
