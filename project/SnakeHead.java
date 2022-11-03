@@ -47,16 +47,20 @@ class SnakeHead extends SnakePart {
         // depending on which arrow key was pressed, we're going to move the player by
         // one whole tile for this input
         if (key == KeyEvent.VK_UP) {
-            this.setVelocity(0, -1);
+            if (velocity.y != 1)
+                this.setVelocity(0, -1);
         }
         if (key == KeyEvent.VK_RIGHT) {
-            this.setVelocity(1, 0);
+            if (velocity.x != -1)
+                this.setVelocity(1, 0);
         }
         if (key == KeyEvent.VK_DOWN) {
-            this.setVelocity(0, 1);
+            if (velocity.y != -1)
+                this.setVelocity(0, 1);
         }
         if (key == KeyEvent.VK_LEFT) {
-            this.setVelocity(-1, 0);
+            if (velocity.x != 1)
+                this.setVelocity(-1, 0);
         }
     }
 

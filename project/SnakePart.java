@@ -38,6 +38,17 @@ abstract class SnakePart extends Entity {
 
     }
 
+    public static void snakeIncrease(){
+        SnakeTrunk snake_new = new SnakeTrunk();
+        Coordinate new_coordinate = tail.getCoordinate();
+
+        tail.setBack(snake_new);
+        snake_new.setFront(tail);
+        snake_new.setPosition(new_coordinate.x, new_coordinate.y);
+        
+        tail = snake_new;
+    }
+
     public static void initSnakeMap(){
         snake_map = new int[Screen.ROWS][Screen.COLUMNS];
         for (int i = 0; i < Screen.ROWS; i++)
@@ -54,6 +65,10 @@ abstract class SnakePart extends Entity {
     public void setFront(SnakePart f){
         front = f;
     }
+    public SnakePart getFront(){
+        return front;
+    }
+
     // Pointer to back part
     public void setBack(SnakePart b){
         back = b;
@@ -62,5 +77,9 @@ abstract class SnakePart extends Entity {
     // Pointer to static tail
     public static void setTail(SnakePart t){
         tail = t;
+    }
+
+    public static SnakePart getTail(){
+        return tail;
     }
 }

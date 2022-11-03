@@ -36,6 +36,7 @@ abstract class Fruit extends Entity {
 
         fruit_map[born_coord.y][born_coord.x] = 1;
 
+        /* 
         for (int i = 0; i < Screen.ROWS; i++){
             for (int j = 0; j < Screen.COLUMNS; j++)
                 System.out.print(fruit_map[i][j] + " ");
@@ -43,7 +44,8 @@ abstract class Fruit extends Entity {
         }
 
         System.out.print("\n\n");
-
+        */
+        
         this.setPosition(born_coord.x, born_coord.y);
     }
 

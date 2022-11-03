@@ -25,25 +25,28 @@ public class Game {
     }
 
     public void updateGame(){
-        snake_second_trunk.move();
-        snake_first_trunk.move();
-        snake_head.move();
 
-        // for (int i = 0; i < Screen.ROWS; i++){
-        //     for (int j = 0; j < Screen.COLUMNS; j++)
-        //         System.out.print(SnakePart.snake_map[i][j] + " ");
-        //     System.out.print("\n");
-        // }
+        SnakePart cursor = SnakePart.getTail();
+        while (cursor != null){
+            cursor.move();
+            cursor = cursor.getFront();
+        }
+        
 
-        // System.out.print("\n\n");
+        if (snake_head.getCoordinate().x == fruit_increase.getCoordinate().x &&
+            snake_head.getCoordinate().y == fruit_increase.getCoordinate().y)
+            fruit_increase.eat();
     }
 
     public void drawGame(Graphics g, Screen s){
-        snake_head.drawEntity(g, s);
-        snake_first_trunk.drawEntity(g, s);
-        snake_second_trunk.drawEntity(g, s);
-
+        
         fruit_increase.drawEntity(g, s);
+        
+        SnakePart cursor = SnakePart.getTail();
+        while (cursor != null){
+            cursor.drawEntity(g, s);
+            cursor = cursor.getFront();
+        }
     }
 
     public void keyPressed(KeyEvent e){
