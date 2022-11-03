@@ -38,7 +38,7 @@ abstract class SnakePart extends Entity {
 
     }
 
-    public void initSnakeMap(){
+    public static void initSnakeMap(){
         snake_map = new int[Screen.ROWS][Screen.COLUMNS];
         for (int i = 0; i < Screen.ROWS; i++)
             for (int j = 0; j < Screen.COLUMNS; j++)
