@@ -18,6 +18,8 @@ abstract class SnakePart extends Entity {
     protected SnakePart back;
     protected static SnakePart tail;
 
+    public static int[][] snake_map; 
+
     public SnakePart (){
         super();
 
@@ -34,6 +36,13 @@ abstract class SnakePart extends Entity {
         front = null;
         back = null;
 
+    }
+
+    public void initSnakeMap(){
+        snake_map = new int[Screen.ROWS][Screen.COLUMNS];
+        for (int i = 0; i < Screen.ROWS; i++)
+            for (int j = 0; j < Screen.COLUMNS; j++)
+                snake_map[i][j] = 0;
     }
 
     // Virtual method

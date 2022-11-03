@@ -22,7 +22,7 @@ abstract class Entity {
     }
 
     public void setPosition(int x, int y){
-        this.position = Screen.board[y][x];
+        this.position = Game.board[y][x];
         this.coordinate.x = x;
         this.coordinate.y = y;
     }

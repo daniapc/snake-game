@@ -30,16 +30,11 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     private Game game;
     private Menu menu;
 
-    public static Coordinate[][] board;
-
     public Screen() {
         // set the game board size
         setPreferredSize(new Dimension(TILE_SIZE * COLUMNS, TILE_SIZE * ROWS));
         // set the game board background color
         setBackground(new Color(232, 232, 232));
-
-        board = new Coordinate[ROWS][COLUMNS];
-        initBoard();
 
         game = new Game();
         game.initGame();
@@ -100,27 +95,21 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     
     private void drawBackground(Graphics g) {
         // draw a checkered background
-        g.setColor(new Color(255, 255, 255));
+        g.setColor(new Color(214, 214, 214));
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLUMNS; col++) {
-                g.fillRect(
-                    col * TILE_SIZE, 
-                    row * TILE_SIZE, 
-                    TILE_SIZE, 
-                    TILE_SIZE
-                );
-
+                // only color every other tile
+                if ((row + col) % 2 == 1) {
+                    // draw a square tile at the current row/column position
+                    g.fillRect(
+                        col * TILE_SIZE, 
+                        row * TILE_SIZE, 
+                        TILE_SIZE, 
+                        TILE_SIZE
+                    );
+                }
             }    
         }
     }
 
-    public static void initBoard(){
-        for (int i = 0; i < ROWS; i++){
-            for (int j = 0; j < COLUMNS; j++){
-                board[i][j] = new Coordinate();
-                board[i][j].y = i*TILE_SIZE;
-                board[i][j].x = j*TILE_SIZE; 
-            }
-        }
-    }
 }
